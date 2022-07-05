@@ -62,7 +62,18 @@ int DestroyList(Poly** L) {
 		return -1;
 	}
 
-	free(*L);
+	if ((*L)->next != NULL) {
+		Poly* p = (*L)->next;
+	}
+	Poly* q = *L;
+
+	while (p) {
+		free(q);
+		q = p;
+		p = p->next;
+	}
+	if(p == NULL && q != NULL)
+		free(q);
 	*L = NULL;
 
 	return 0;
