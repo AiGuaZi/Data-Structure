@@ -62,7 +62,7 @@ int DestroyList(Poly** L) {
 		return -1;
 	}
 
-	if ((*L)->next != NULL) {
+	/*if ((*L)->next != NULL) {
 		Poly* p = (*L)->next;
 	}
 	Poly* q = *L;
@@ -73,7 +73,14 @@ int DestroyList(Poly** L) {
 		p = p->next;
 	}
 	if(p == NULL && q != NULL)
+		free(q);*/
+	Poly* q = NULL;
+	while (*L) {
+		q = *L;
+		*L = (*L)->next;
 		free(q);
+	}
+
 	*L = NULL;
 
 	return 0;
@@ -86,11 +93,21 @@ int ClearList(Poly** L) {
 		return -1;
 	}
 
-	//先销毁表
-	DestroyList(L);
+	if (!(*L)->next)
+		return 0;
 
-	//重新初始化表格
-	InitList(L);
+	//方法一
+	/*Poly* clear_head = (*L)->next;
+	Poly* temp = NULL;
+	while (clear_head) {
+		temp = clear_head;
+		clear_head = clear_head->next;
+		free(temp);
+	}*/
+
+	//方法二
+	DestroyList(&((*L)->next));
+	(*L)->next = NULL;
 
 	return 0;
 }
