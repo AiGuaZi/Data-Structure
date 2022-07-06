@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32602.215
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "链表的两种插入方式", "链表的两种插入方式.vcxproj", "{04DC3370-675A-486A-B874-2182FA012DB1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{04DC3370-675A-486A-B874-2182FA012DB1}.Debug|x64.ActiveCfg = Debug|x64
+		{04DC3370-675A-486A-B874-2182FA012DB1}.Debug|x64.Build.0 = Debug|x64
+		{04DC3370-675A-486A-B874-2182FA012DB1}.Debug|x86.ActiveCfg = Debug|Win32
+		{04DC3370-675A-486A-B874-2182FA012DB1}.Debug|x86.Build.0 = Debug|Win32
+		{04DC3370-675A-486A-B874-2182FA012DB1}.Release|x64.ActiveCfg = Release|x64
+		{04DC3370-675A-486A-B874-2182FA012DB1}.Release|x64.Build.0 = Release|x64
+		{04DC3370-675A-486A-B874-2182FA012DB1}.Release|x86.ActiveCfg = Release|Win32
+		{04DC3370-675A-486A-B874-2182FA012DB1}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6931DB81-DCAF-48C9-BB31-7B4FC3B868FF}
+	EndGlobalSection
+EndGlobal
