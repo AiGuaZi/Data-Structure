@@ -42,6 +42,11 @@ bool insert_Date(INT** L) {
 	return true;
 }
 
+/**
+* 功能：合并两个循环链表
+* 参数：INT** L1, INT** L2
+* 结果：表不存在返回false，合并后的结果尾指针为L2。
+*/
 bool merge_List(INT** L1, INT** L2) {
 
 	if (*L1 == NULL || *L2 == NULL) {
