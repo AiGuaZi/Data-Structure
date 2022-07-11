@@ -21,7 +21,7 @@ int main() {
 	temp->date = 6;
 	temp->next = NULL;
 	insert_elem_list(&list, 1, temp);
-	delete_elem_list(&list, 1);
+	delete_elem_list(&list, 4);
 
 	//±éÀúÁ´±íÔªËØ
 	INT* P = list->next;

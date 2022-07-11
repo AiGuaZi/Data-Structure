@@ -121,32 +121,51 @@ bool delete_elem_list(INT** L, int i) {
 		return false;
 	}
 
-	//移动到要删除元素的前一个元素
-	INT* delete_index = *L;
-	int index = 1;
-	while (delete_index->next && index < i) {
-		index++;
-		delete_index = delete_index->next;
-	}
+	//方法一：思想：通过指向删除元素的前一个元素，取得删除元素后面结点的指针。
+	////移动到要删除元素的前一个元素
+	//INT* delete_index = *L;
+	//int index = 1;
+	//while (delete_index->next && index < i) {
+	//	index++;
+	//	delete_index = delete_index->next;
+	//}
 
-	//进行删除操作
-	INT* temp = delete_index->next;
-	if (temp && temp->next) {
-		temp->next->prev = delete_index;
-		delete_index->next = temp->next;
-	}
-	else {
-		delete_index->next = NULL;
-	}
-	
+	////进行删除操作
+	//INT* temp = delete_index->next;
+	//if (temp && temp->next) {
+	//	temp->next->prev = delete_index;
+	//	delete_index->next = temp->next;
+	//}
+	//else {
+	//	delete_index->next = NULL;
+	//}
+	//
 	//是否被产出的结点
-	free(temp);
-	temp = NULL;
+	//free(temp);
+	//temp = NULL;
 	/*
 	* free 只能释放有malloc申请的内存，不能释放其他方式申请的内存
 	* 例如： INT a,不能被free释放，会导致程序崩溃
 	*       INT *a = (INT*)malloc(sizeof(INT))，申请的内存可以被释放。
 	*/
 
+	//方法二：通过指向删除元素的结点，连接删除前的结点和删除后的结点
+	INT* delete_index = (*L)->next;
+	int index = 0;
+	while (delete_index && index < i - 1) {
+		index++;
+		delete_index = delete_index->next;
+	}
+
+	if (delete_index && delete_index->next) {
+		delete_index->next->prev = delete_index->prev;
+		delete_index->prev->next = delete_index->next;
+	}
+	else {
+		delete_index->prev->next = NULL;
+	}
+	
+	free(delete_index);
+	delete_index = NULL;
 	return true;
 }
