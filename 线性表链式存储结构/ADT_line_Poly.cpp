@@ -347,6 +347,9 @@ int inputList(Poly* L) {
 		//赋值操作
 		temp->cof = str[0] - '0';
 		temp->pow = str[2] - '0';
+		/*
+		* 通过这种方式进行赋值操作，会导致系数小于等于0，计算出错。
+		*/
 
 		//cout << "Insert : cof = " << temp->cof << " pow = " << temp->pow << endl;
 
@@ -455,7 +458,7 @@ int computePoly(Poly* L1, Poly* L2, Poly* answer, char(com)()) {
 			
 		}
 		cout << "com : temp->cof = " << temp->cof << " temp->pow = " << temp->pow << endl;
-		InsertList(answer, ListLength(answer) + 1, *temp);
+		if(temp->cof != 0) InsertList(answer, ListLength(answer) + 1, *temp);
 	}
 
 	while (indexl1) {
