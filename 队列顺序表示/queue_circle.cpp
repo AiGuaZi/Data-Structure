@@ -71,9 +71,14 @@ void traverse_queue(INT* Q, void (com)(const void* elem)) {
 		return;
 	}
 
-	for (int i = Q->front; i < Q->rear; i++) {
+	com(&Q->data[Q->front]);
+	for (int i = Q->front + 1; i != Q->front && i != Q->rear; i = up_or_down(i,queue_length(Q), '+')) {
 		com(&Q->data[i]);
 	}
+
+	/*for (int i = Q->front; i < Q->rear; i++) {
+		com(&Q->data[i]);
+	}*/
 }
 
 bool out_queue(INT* Q, int* e) {
