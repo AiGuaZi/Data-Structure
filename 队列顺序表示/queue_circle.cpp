@@ -42,7 +42,6 @@ bool in_queue(INT* Q, int e) {
 	//Èë¶Ó²Ù×÷
 	Q->data[Q->rear] = e;
 	Q->rear = up_or_down(Q->rear, MAX_SIZE, '+');
-	cout << "Q->rear = " << Q->rear << endl;
 
 	return true;
 }
