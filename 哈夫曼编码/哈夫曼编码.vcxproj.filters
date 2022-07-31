@@ -15,15 +15,27 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="threaded_binary_tree.h">
+    <ClInclude Include="Menu.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="huffman_code.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="str_cal.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="threaded_binary_tree.cpp">
+    <ClCompile Include="Menu.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="线索二叉树.cpp">
+    <ClCompile Include="哈夫曼编码系统.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="huffman_code.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="str_cal.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{f9d31196-e6ef-4df3-8d98-e807fe59a2ac}</ProjectGuid>
-    <RootNamespace>线索二叉树</RootNamespace>
+    <ProjectGuid>{b9bd6cc8-16f0-4bba-bbf0-5d0ac466de11}</ProjectGuid>
+    <RootNamespace>树的表示及其遍历</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -127,11 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="threaded_binary_tree.h" />
+    <ClCompile Include="binary_to_tree.cpp" />
+    <ClCompile Include="树的表示及其遍历.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="threaded_binary_tree.cpp" />
-    <ClCompile Include="线索二叉树.cpp" />
+    <ClInclude Include="binary_to_tree.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

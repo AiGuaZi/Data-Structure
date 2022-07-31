@@ -1,43 +1,77 @@
 
+#pragma once
 #include"threaded_binary_tree.h"
+
+void my_memset(TBTree* T) {
+	T->date = 0;
+	T->left = NULL;
+	T->ltag = 0;
+	T->right = NULL;
+	T->rtag = 0;
+}
 
 TBTree* init_TBTree() {
 
 	TBTree* head = (TBTree*)malloc(sizeof(TBTree));
 	if (head == NULL) exit(-1);/*空间不足*/
-	head->date = 0;
-	head->left = NULL;
-	head->ltag = 0;
-	head->right = NULL;
-	head->rtag = 0;
+	my_memset(head);
 
 	return head;
 }
 
-bool pre_input_TBTree(TBTree** TB) {/*传入头结点*/
+bool pro_input_TBTree(TBTree** TB) {/*传入头结点*/ 
 
 	//判断线索二叉树是否以及存在指向
-	if (TB != NULL)return false;
+	if (*TB != NULL)return false;
 
 	TBTree** p = TB;
 
 	char temp_ch = 0;
 	cin >> temp_ch;
 
-	if (temp_ch) {
+	if (temp_ch == '#') {
 		*TB = NULL;
-		return false;
 	}
 	else {
+		//分配空间
+		*TB = (TBTree*)malloc(sizeof(TBTree));
+		if (*TB == NULL) exit(-1);/*空间不足*/
+		my_memset(*TB);
 
-		(*TB)->left = (TBTree*)malloc(sizeof(TBTree));
-		if ((*TB)->left == NULL) exit(-1);/*空间不足*/
-		(*TB)->left->date = temp_ch;
-		(*TB)->left->left = NULL;
-		(*TB)->left->ltag = 0;
-		(*TB)->left->right = NULL;
-		(*TB)->left->rtag = 0;
+		//中序递归建立，左右子树
+		pro_input_TBTree(&(*TB)->left);
+		(*TB)->date = temp_ch;
+		pro_input_TBTree(&(*TB)->right);
+	}
+	return true;
+}
 
-		if
+void pro_order_traverse(TBTree* TB) {
+
+	if (TB == NULL) {
+		cout << "#";
+		return;
+	}
+
+	pro_order_traverse(TB->left);
+	cout << TB->date;
+	pro_order_traverse(TB->right);
+}
+
+
+
+
+
+void cen_order_thread_traverse(TBTree* TB) {
+
+	TBTree* p = TB->left;
+	while (p != TB) {
+		while (p->ltag == 0) p = p->left;
+		cout << p->date;
+		while (p->rtag == 1 && p->right != TB) {
+			p = p->right;
+			cout << p->date;
+		}
+		p = p->right;
 	}
 }
