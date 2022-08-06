@@ -68,7 +68,7 @@ int cal_count_of_tree_from_binary_tree(BTree* BT) {
 /*将二叉树变成森林*/
 void BTree_to_forest(BTree* BT, Tree** T, int* T_Size) {
 	
-	if (BT == NULL || T != NULL) return;
+	if (BT == NULL || *T != NULL) return;
 
 	*T_Size = cal_count_of_tree_from_binary_tree(BT);
 
@@ -81,9 +81,9 @@ void BTree_to_forest(BTree* BT, Tree** T, int* T_Size) {
 	BTree* p = BT;
 	int i = 0;
 	while (p) {
-		*(T + i) = (Tree*)malloc(sizeof(Tree));
-		(*(T + i))->date = p->date;
-		BTree_to_Tree(p, (T + i));
+		T[i] = (Tree*)malloc(sizeof(Tree));
+		T[i]->date = p->date;
+		BTree_to_Tree(p, &T[i]);
 		p = p->nextsibling;
 		i++;
 	}
