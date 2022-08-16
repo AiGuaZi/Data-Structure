@@ -21,10 +21,9 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{507d5fc3-cc83-4e3f-b700-139cb3b5a8fd}</ProjectGuid>
-    <RootNamespace>邻接矩阵</RootNamespace>
+    <ProjectGuid>{e082b996-993d-46d9-a5f2-17c445e02333}</ProjectGuid>
+    <RootNamespace>图十字链表</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>无向图_邻接矩阵</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -128,11 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Tu.h" />
+    <ClInclude Include="Yo_Tu.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Tu.cpp" />
-    <ClCompile Include="图_邻接矩阵.cpp" />
+    <ClCompile Include="test.cpp" />
+    <ClCompile Include="Yo_Tu.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

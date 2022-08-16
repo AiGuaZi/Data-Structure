@@ -34,6 +34,9 @@ AMGraph* init_Graph() {
 
 		for (int j = 0; j < G->vex_count; j++) 
 			G->arcs[i][j] = MAX_INT;
+		/*
+		* 无向图:G->arcs[i][j] = 1;
+		*/
 	}
 
 	//构造邻接矩阵
@@ -59,6 +62,10 @@ AMGraph* init_Graph() {
 
 		G->arcs[index_v1][index_v2] = wight;
 		G->arcs[index_v2][index_v1] = wight;
+
+		/*
+		* 有向图:G->arcs[index_v1][index_v2] = wight;
+		*/
 	}
 	
 	return G;
@@ -101,4 +108,118 @@ void print_AMG(AMGraph* G) {
 
 		printf("\n");
 	}
+}
+
+void DFS(AMGraph* G,int index_v,bool *visited) {
+
+	if (G == NULL) return;
+
+	cout << G->vexs[index_v] << " ";
+	visited[index_v] = true;
+
+	for (int i = 0; i < G->vex_count; i++) {
+		if (G->arcs[index_v][i] != MAX_INT && !visited[i]) {
+			DFS(G, i, visited);
+		}
+	}
+
+}
+
+bool* creat_and_init_visited(AMGraph* G) {
+
+	if (G == NULL) return NULL;
+
+	bool* ret = (bool*)malloc(sizeof(bool) * G->vex_count);
+	if (ret == NULL) exit(-1);
+	memset(ret, false, sizeof(bool) * G->vex_count);
+
+	return ret;
+}
+
+void free_Graph(AMGraph* G) {
+
+	if (G == NULL)return;
+
+	//释放顶点表
+	free(G->vexs);
+	G->vexs = NULL;
+
+	//释放边表
+	for (int i = 0; i < G->arc_count; i++) {
+		free(G->arcs[i]);
+		G->arcs[i] = NULL;
+	}
+	free(G->arcs);
+	G->arcs = NULL;
+
+	//释放图
+	free(G);
+	G = NULL;
+}
+
+void free_visited(bool* visited) {
+	if (visited == NULL) return;
+
+	free(visited);
+	visited = NULL;
+}
+
+void BFS(AMGraph* G,int i_v) {
+
+	if (G == NULL || i_v < 0 || i_v >= G->vex_count) return;
+
+	
+
+	//创建队列并初始化
+	int* temp_queue = creat_and_init_queue(G);
+	int index_head = 0;
+	int index_tail = 0;
+
+	//创建访问表
+	int* visited = (int*)malloc(sizeof(int) * G->vex_count);
+	if (visited == NULL) exit(-1);
+	memset(visited, -1, sizeof(int) * G->vex_count);
+	
+
+	temp_queue[index_head] = i_v;
+	up_queue(&index_head,G->vex_count);
+
+
+	while (index_head != index_tail) {
+
+		cout << G->vexs[temp_queue[index_tail]] << " ";
+		visited[temp_queue[index_tail]] = 1;
+
+		for (int i = 0; i < G->vex_count; i++) {
+			if (G->arcs[temp_queue[index_tail]][i] != MAX_INT && visited[i] == -1) {
+				temp_queue[index_head] = i;
+				visited[i] = 1;
+				up_queue(&index_head, G->vex_count);
+			}
+		}
+		up_queue(&index_tail, G->vex_count);
+
+	}
+
+	free(temp_queue);
+	free(visited);
+
+	cout << endl;
+}
+
+int* creat_and_init_queue(AMGraph* G) {
+
+	int* vexs = (int*)malloc(sizeof(int) * G->vex_count);
+	if (vexs == NULL) exit(-1);
+	memset(vexs, -1, sizeof(int) * G->vex_count);
+
+	return vexs;
+}
+
+void up_queue(int* up_num, int max) {
+
+	if (up_num == NULL) return;
+
+	if (*up_num + 1 > max - 1) *up_num = 0;
+	else *up_num += 1;
 }

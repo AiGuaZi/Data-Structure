@@ -3,20 +3,26 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "邻接矩阵", "邻接矩阵.vcxproj", "{507D5FC3-CC83-4E3F-B700-139CB3B5A8FD}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "无向图_邻接矩阵", "邻接矩阵.vcxproj", "{507D5FC3-CC83-4E3F-B700-139CB3B5A8FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
+		Release|Win32 = Release|Win32
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{507D5FC3-CC83-4E3F-B700-139CB3B5A8FD}.Debug|x64.ActiveCfg = Debug|x64
-		{507D5FC3-CC83-4E3F-B700-139CB3B5A8FD}.Debug|x64.Build.0 = Debug|x64
+		{507D5FC3-CC83-4E3F-B700-139CB3B5A8FD}.Debug|Win32.ActiveCfg = Debug|Win32
+		{507D5FC3-CC83-4E3F-B700-139CB3B5A8FD}.Debug|Win32.Build.0 = Debug|Win32
+		{507D5FC3-CC83-4E3F-B700-139CB3B5A8FD}.Debug|x64.ActiveCfg = Debug|Win32
+		{507D5FC3-CC83-4E3F-B700-139CB3B5A8FD}.Debug|x64.Build.0 = Debug|Win32
 		{507D5FC3-CC83-4E3F-B700-139CB3B5A8FD}.Debug|x86.ActiveCfg = Debug|Win32
 		{507D5FC3-CC83-4E3F-B700-139CB3B5A8FD}.Debug|x86.Build.0 = Debug|Win32
+		{507D5FC3-CC83-4E3F-B700-139CB3B5A8FD}.Release|Win32.ActiveCfg = Release|Win32
+		{507D5FC3-CC83-4E3F-B700-139CB3B5A8FD}.Release|Win32.Build.0 = Release|Win32
 		{507D5FC3-CC83-4E3F-B700-139CB3B5A8FD}.Release|x64.ActiveCfg = Release|x64
 		{507D5FC3-CC83-4E3F-B700-139CB3B5A8FD}.Release|x64.Build.0 = Release|x64
 		{507D5FC3-CC83-4E3F-B700-139CB3B5A8FD}.Release|x86.ActiveCfg = Release|Win32
