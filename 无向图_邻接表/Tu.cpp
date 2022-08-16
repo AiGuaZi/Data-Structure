@@ -221,6 +221,9 @@ void BFS(ALGraph* G, int i_v) {
 		up_queue(&index_tail, G->vex_count);
 	}
 
+	//ÊÍ·Å¸¨ÖúÄÚ´æ
+	free(temp_queue);
+	free(visited);
 	cout << endl;
 }
 
