@@ -1,28 +1,24 @@
 #include"Tu.h"
 
-AMGraph* init_Graph() {
+AMGraph* init_Graph(int vex_count,int arc_count) {
+	
+	if (vex_count <= 0 && arc_count <= 0 || 
+		arc_count > (vex_count - 1) * vex_count / 2) {
+		return NULL;
+	}
 
 	//创建图
 	AMGraph *G = (AMGraph*)malloc(sizeof(AMGraph));
 	if (G == NULL) exit(-1);
-
-	//输入顶点数和边数
-	cout << "Please enter two numbers(vex_count and arc_count) : ";
-	cin >> G->vex_count >> G->arc_count;
-
-	if (G->vex_count <= 0) {
-		cout << "Error: vex_count con't equal or less than 0";
-		return NULL;
-	}
+	G->vex_count = vex_count;
+	G->arc_count = arc_count;
+	
 
 	//输入顶点值
 	G->vexs = (VerTexTyper*)malloc(sizeof(VerTexTyper) * G->vex_count);
 	if (G->vexs == NULL) exit(-1);
+	memset(G->vexs, 0, sizeof(VerTexTyper) * G->vex_count);
 
-	cout << "Please enter date:";
-	for (int i = 0; i < G->vex_count; i++) {
-		cin >> G->vexs[i];
-	}
 
 	//初始化邻接矩阵
 	G->arcs = (ArcType**)malloc(sizeof(ArcType*) * G->vex_count);
@@ -39,8 +35,21 @@ AMGraph* init_Graph() {
 		*/
 	}
 
+	
+	return G;
+}
+
+bool creat_Graph(AMGraph** G) {
+
+	if (*G == NULL)return false;
+
+	cout << "Please enter date:";
+	for (int i = 0; i < (*G)->vex_count; i++) {
+		cin >> (*G)->vexs[i];
+	}
+
 	//构造邻接矩阵
-	for (int i = 0; i < G->arc_count; i++) {
+	for (int i = 0; i < (*G)->arc_count; i++) {
 
 		//输入邻接的两个顶点值
 		cout << "请输入相邻接的两个顶点值和权值:";
@@ -57,18 +66,18 @@ AMGraph* init_Graph() {
 		}
 
 		//查询其在图中的下标
-		int index_v1 = search_elem(G, v1);
-		int index_v2 = search_elem(G, v2);
+		int index_v1 = search_elem((*G), v1);
+		int index_v2 = search_elem((*G), v2);
 
-		G->arcs[index_v1][index_v2] = wight;
-		G->arcs[index_v2][index_v1] = wight;
+		(*G)->arcs[index_v1][index_v2] = wight;
+		(*G)->arcs[index_v2][index_v1] = wight;
 
 		/*
 		* 有向图:G->arcs[index_v1][index_v2] = wight;
 		*/
 	}
-	
-	return G;
+
+	return true;
 }
 
 int search_elem(AMGraph* G, VerTexTyper v2) {
@@ -222,4 +231,64 @@ void up_queue(int* up_num, int max) {
 
 	if (*up_num + 1 > max - 1) *up_num = 0;
 	else *up_num += 1;
+}
+
+AMGraph* MST_Prim(AMGraph* G, int i_v) {
+	
+	if (G == NULL || i_v < 0 || i_v >= G->vex_count) return NULL;
+	
+	AMGraph* TE = init_Graph(G->vex_count, G->vex_count - 1);
+
+	bool* visited = (bool*)malloc(sizeof(bool) * G->vex_count);
+	if (visited == NULL) exit(-1);
+	memset(visited, false, sizeof(bool) * G->vex_count);
+
+	copy_node(G, i_v, TE, 0);
+	visited[i_v] = true;
+	for (int top_TE = 1; top_TE < G->vex_count; top_TE++) {
+
+		int min_i_weight = -1;
+		int min_j_weight = -1;
+		int min_weight   = 2147483647;
+		for (int j = 0; j < G->vex_count; j++) {
+
+			if (visited[j] == true) continue;
+
+			for (int i_arc = 0; i_arc < G->vex_count; i_arc++) {
+
+				if (visited[i_arc] == false) continue;
+
+				if (G->arcs[j][i_arc] != -1 && G->arcs[j][i_arc] < min_weight) {
+					min_weight = G->arcs[j][i_arc];
+					min_i_weight = i_arc;
+					min_j_weight = j;
+				}
+			}
+		}
+
+		copy_node(G, top_TE, TE, top_TE);
+		creat_ARC(TE, min_i_weight, min_j_weight, min_weight);
+		visited[min_j_weight] = true;
+
+	}
+
+	free(visited);
+	return TE;
+}
+
+void copy_node(AMGraph* from, int i_from, AMGraph* to,int i_to) {
+
+	if (from == NULL || i_from < 0 || i_from >= from->vex_count)return;
+	if (to   == NULL || i_to   < 0 || i_to   >    to->vex_count)return;
+	if (from->vex_count != to->vex_count)                       return;
+
+	to->vexs[i_to] = from->vexs[i_from];
+}
+
+void creat_ARC(AMGraph* G, int i_from, int i_to,int weight) {
+
+	if (G == NULL)return;
+
+	G->arcs[i_from][i_to] = weight;
+	G->arcs[i_to][i_from] = weight;
 }

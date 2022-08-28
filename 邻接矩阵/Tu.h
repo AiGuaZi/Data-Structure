@@ -17,7 +17,10 @@ typedef struct {
 }AMGraph;
 
 /*初始化*/
-AMGraph* init_Graph();
+AMGraph* init_Graph(int vex_count, int arc_count);
+
+/*创建图*/
+bool creat_Graph(AMGraph** G);
 
 /*查询图中元素，成功返回下标，失败返回-1*/
 int search_elem(AMGraph* G, VerTexTyper v2);
@@ -45,3 +48,12 @@ void free_Graph(AMGraph* G);
 
  /*队列循环自增*/
  void up_queue(int* up_num, int max);
+
+ /*Prim算法构造最小生成树*/
+ AMGraph* MST_Prim(AMGraph* G, int i_v);
+
+ /*复制结点数据*/
+ void copy_node(AMGraph* from, int i_from, AMGraph* to, int i_to);
+
+ /*构造边结点*/
+ void creat_ARC(AMGraph* G, int i_from, int i_to, int weight);

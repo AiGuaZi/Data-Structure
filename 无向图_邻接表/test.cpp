@@ -1,7 +1,12 @@
 #include"Tu.h"
 
 int main() {
-	ALGraph* G = creat_ALGraph(NO_TU);
+	int vex_count, arc_count;
+	/*cout << "请输入结点数和边数:";
+	
+	cin >> vex_count >> arc_count;
+	ALGraph* G = init_Graph(vex_count, arc_count);
+	creat_ALGraph(G,NO_TU);
 	print_date(G);
 
 	cout << "A的度:" << cal_node_count(&G->AG[0]) << endl;
@@ -11,8 +16,25 @@ int main() {
 	cout << endl;
 	BFS(G, 0);
 
+	cout << endl;
+	ALGraph* MST = MST_Prim(G, 0);
+	print_date(MST);
+
 	free(G);
-	free(visited);
+	free(visited);*/
+
+
+
+	//最短路劲
+	cout << "请输入结点数和边数:";
+	cin >> vex_count >> arc_count;
+	ALGraph*GD = init_Graph(vex_count, arc_count);
+	creat_ALGraph(GD, YO_TU);
+	print_date(GD);
+	cout << endl;
+
+	cout << Dijkstra(GD, 4, 6);
+
 	return 0;
 }
 
@@ -31,8 +53,32 @@ D F 6
 D E 5
 E F 2
 
+MST
+6 10
+A B C D E F
+A B 6
+A D 5
+A C 1
+B C 5
+C D 5
+B E 3
+C E 6
+C F 4
+D F 2
+E F 6
 
-
-
+最短路劲
+7 10
+0 1 2 3 4 5 6
+0 2 8
+0 1 13
+2 3 5
+3 4 6
+0 4 30
+1 5 9
+4 5 2
+5 6 17
+1 6 7
+0 6 32
 
 */
