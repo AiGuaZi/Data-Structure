@@ -46,6 +46,12 @@ typedef struct Dijk_List {
 	AimI_info* Aim;			//结点信息
 }Dijk_List;
 
+//辅助栈
+typedef struct Stack {
+	int* date;
+	int top;
+}Stack;
+
 
 
 /*初始化图*/
@@ -107,3 +113,18 @@ bool is_PreNode(ALGraph* G, int is_i, int aim_i,int *info);
 
 /*释放D_List辅助表*/
 void free_D_List(Dijk_List* D_List,int vex_count);
+
+/*拓扑排序*/
+void Topo_Sort(ALGraph* G);
+
+/*初始化栈*/
+void init_Stack(int count, Stack**S);
+
+/*判断有无前驱*/
+bool YoNo_PreNode(ALGraph* G, int i_v);
+
+/*搜索无前驱结点*/
+void search_no_PreNode(ALGraph* G, Stack** no_PreNode);
+
+/*删除图结点和其出度边*/
+bool delete_Node(ALGraph* G, int i_v);

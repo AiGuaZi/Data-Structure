@@ -26,14 +26,23 @@ int main() {
 
 
 	//最短路劲
-	cout << "请输入结点数和边数:";
+	/*cout << "请输入结点数和边数:";
 	cin >> vex_count >> arc_count;
 	ALGraph*GD = init_Graph(vex_count, arc_count);
 	creat_ALGraph(GD, YO_TU);
 	print_date(GD);
 	cout << endl;
 
-	cout << Dijkstra(GD, 4, 6);
+	cout << Dijkstra(GD, 4, 6);*/
+
+	cout << "请输入结点数和边数:";
+	cin >> vex_count >> arc_count;
+	ALGraph* GD = init_Graph(vex_count, arc_count);
+	creat_ALGraph(GD, YO_TU);
+	print_date(GD);
+	cout << endl;
+
+	Topo_Sort(GD);
 
 	return 0;
 }
@@ -80,5 +89,25 @@ E F 6
 5 6 17
 1 6 7
 0 6 32
+
+拓扑排序
+12 16
+A B C D E F G H I J K L
+A B 1
+A D 1
+A L 1
+A C 1
+B C 1
+C E 1
+C G 1
+C H 1
+D E 1
+E G 1
+I L 1
+I J 1
+I K 1
+J L 1
+K F 1
+F H 1
 
 */

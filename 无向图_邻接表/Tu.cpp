@@ -507,3 +507,81 @@ void free_D_List(Dijk_List* D_List,int vex_count) {
 
 	free(D_List);
 }
+
+bool YoNo_PreNode(ALGraph* G, int i_v) {
+
+	if (G == NULL || i_v < 0 || i_v >= G->vex_count) return ERROR;
+
+	int vex_count = G->vex_count;
+	for (int i = 0; i < vex_count; i++) {
+
+		if (i == i_v)continue;
+
+		ArcNode* p = G->AG[i].head;
+		while (p) {
+			if (p->index_in_AdjList == i_v) return true;
+			p = p->next;
+		}
+	}
+
+	return false;
+}
+
+void search_no_PreNode(ALGraph* G, Stack** no_PreNode) {
+
+	if (G == NULL) return;
+
+	init_Stack(G->vex_count,no_PreNode);
+
+	int no_count = 0;
+	for (int i = 0; i < G->vex_count; i++) {
+		if (!YoNo_PreNode(G, i)) {
+			(*no_PreNode)->date[(*no_PreNode)->top++] = i;
+		}
+	}
+}
+
+void init_Stack(int count,Stack **S) {
+	if (count <= 0)return;
+
+	*S = (Stack*)malloc(sizeof(Stack));
+	if (S == NULL) exit(ENOMEM_ERROR);
+
+	(*S)->date = (int*)malloc(sizeof(int) * count);
+	if ((*S)->date == NULL) exit(ENOMEM_ERROR);
+	memset((*S)->date, 0, sizeof(int) * count);
+	(*S)->top = 0;
+}
+
+bool delete_Node(ALGraph* G, int i_v) {
+
+	if (G == NULL || i_v < 0 || i_v >= G->vex_count) return ERROR;
+
+	
+}
+
+void Topo_Sort(ALGraph* G) {
+
+	if (G == NULL)return;
+	Stack* no_PreNode = NULL;
+	search_no_PreNode(G, &no_PreNode);
+
+	int count = 0;
+	while (no_PreNode->top != 0) {
+		
+		int s_top_elem = no_PreNode->date[--no_PreNode->top];
+		cout << G->AG[s_top_elem].date << " ";
+
+		ArcNode* p = G->AG[s_top_elem].head;
+		while (p) {
+			if (!YoNo_PreNode(G, p->index_in_AdjList)) {
+				no_PreNode->date[no_PreNode->top++] = p->index_in_AdjList;
+			}
+			p = p->next;
+		}
+	}
+
+	if (count < G->vex_count) {
+		cout << "´ËÍ¼´æÔÚ»·" << endl;
+	}
+}
