@@ -25,6 +25,7 @@ int search_block(int* nums, int nums_length, int search_elem);
 void block_Init(block** blo_list, size_t NumOfElememt);
 void cut_Block(int* nums, int nums_length, block* blo_list, int* blo_length);
 void search_IOfblock(block* blo_list, int search_elem, int blo_length, int* i_left, int* i_right);
+void free_block(block* blo_list);
 
 int main() {
 	//测试数据
@@ -200,7 +201,14 @@ int search_block(int *nums, int nums_length, int search_elem) {
 		}
 	}
 	//释放索引表
-
+	free_block(i_B);
 	//返回查找结果
 	return ret;
+}
+
+void free_block(block* blo_list) {
+	if (blo_list == NULL)return;
+
+	free(blo_list);
+	blo_list = NULL;
 }
